@@ -1,0 +1,87 @@
+{
+	"layer": "top",
+	"position": "top",
+	"height": 24,
+	"spacing": 0,
+  "margin-top": 5,
+  "margin-left": 450,
+  "margin-right": 450,
+	"modules-left": [
+		"sway/workspaces"
+	],
+	"modules-right": [
+		"cpu",
+		"memory",
+		//"temperature",
+		"pulseaudio",
+    //"sway/language",
+    "custom/power"
+	],
+	"modules-center": [
+    "clock"
+	],
+  "sway/workspaces": {
+    "format": "{icon}",
+    "format-icons": {
+      "default": "󰋜",
+      "1": "一",
+      "2": "二",
+      "3": "三",
+      "4": "四",
+      "5": "五",
+      "6": "六",
+      "7": "七",
+      "8": "八",
+      "9": "九",
+      "10": "十"
+    },
+    "on-click": "activate",
+    "disable-scroll": true
+  },
+  "sway/language": {
+    "format": "<span color=\"#958798\">lng</span> {short}"
+  },
+  "custom/separator": {
+    "format": "<span color=\"#343845\">/</span>"
+  },
+  "clock": {
+		"interval": 60,
+		"format": "{:%a %d %b %H:%M}",
+		"max-length": 25
+	},
+	"cpu": {
+		"interval": "15",
+		"format": "<span color=\"#958798\">cpu</span> {usage}%",
+		"max-length": 10
+	},
+	"memory": {
+		"interval": 30,
+		"format": "<span color=\"#958798\">ram</span> {}%",
+		"max-length": 10
+	},
+	"temperature": {
+		"hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
+		"critical-threshold": 80,
+		"format": "<span color=\"#958798\">tmp</span> {temperatureC} °C",
+		"interval": 2
+	},
+	"pulseaudio": {
+		"tooltip": false,
+		"scroll-step": 5,
+		"format": "{icon} {volume}%",
+		"format-muted": " mut ",
+		"on-click":"foot sh -c 'source ~/.zshrc && wiremix",
+		"on-click-right":"foot sh -c 'source ~/.zshrc && wiremix",
+    "on-scroll-up":"wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+",
+    "on-scroll-down":"wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-",
+    "format-icons": {
+			"default": ["<span color=\"#958798\">vol</span>", "<span color=\"#958798\">vol</span>", "<span color=\"#958798\">vol</span>"]
+		}
+	},
+
+	"custom/power": {
+    		"format": " ⏻ ",
+    		"tooltip-format": "Power menu",
+    		"on-click": "~/.config/waybar/scripts/power-menu.sh"
+	}
+}
